@@ -1,4 +1,5 @@
-/.replit
+# ignore
 notes.txt
 ideas.txt
+*.txt
 /replit.nix
