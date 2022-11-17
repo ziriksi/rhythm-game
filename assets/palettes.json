@@ -1,0 +1,18 @@
+{
+  "green": ["D5E99A", "A6E072", "60C058", "458F66", "327568"],
+  "orange": ["F4E5AE", "F6DB74", "ECB83B", "D67F2E", "A14A32"],
+  "blue": ["96DEE8", "78ADDF", "5D85CB", "5669B6", "574BA1"],
+  "purple": ["D48B8B", "B85D81", "A14C84", "8B3E89", "5D316F"],
+  "yellow": ["FEFFC1", "FDFF9F", "FCFF54", "E7D553", "BB9B4D"],
+  "red": ["FBD1B0", "F0967C", "E35C5C", "C74869", "923E67"],
+  "pink": ["FFC9C9", "FFA5B5", "F988CE", "C76CC0", "A563A9"],
+  "neon-blue": ["D8FFEF", "65FFE4", "00FFF4", "00CDE1", "008ABB"],
+  "mint": ["C2FDD6", "89FFC0", "40FFBB", "2DD4B6", "379498"],
+  "black": ["5E4152", "4B3140", "3C2733", "291B23", "000000"],
+  "lavender": ["FBDAFF", "EDBDFF", "CA8CEE", "A66ED6", "7353A1"],
+  "cream": ["FFFFFF", "FFFFE7", "FFFFBC", "EAEAA9", "D9D99E"],
+  "bronze": ["F5EAD8", "E4D6B2", "A97835", "69421A", "3E2516"],
+  "silver": ["FFFFFF", "D1D2DC", "AAABB3", "7B7B82", "4C4D55"],
+  "gold": ["FFFFFF", "FFEA92", "F6CD26", "AC6B26", "563226"],
+  "platinum": ["FFFFFF", "FFE7E7", "D5B2CD", "877D9E", "465D66"]
+}

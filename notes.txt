@@ -1,0 +1,5 @@
+Editor playhead should move over (bpm) lines per minute
+bpm / 60 per second
+bpm / 60 * 16px * 4npb
+
+Main colors: #da7070 (218, 112, 112) / #5d85cb (93, 133, 203)

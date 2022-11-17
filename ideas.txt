@@ -1,0 +1,35 @@
+MODES
+- Classic
+- Cut mode
+- Click mode
+
+LEVEL EDITOR
+- Users can upload songs of up to 10MB
+- 10GB max / 10MB = >=1000 songs possible
+- Maybe have a built in BPM calculator or just link to an external one idk
+
+COLOR REWARDS
+- You get different tiers of the same color for beating ost levels on different difficulty
+  - Easy: Dulled
+  - Medium: Regular
+  - Hard: Shiny
+  - Albanian: Radiant
+- Clearing all maps on:
+  - Easy: Unlocks Bronze
+  - Medium: Unlocks Silver
+  - Hard: Unlocks Gold
+  - Albanian: Unlocks Platinum
+
+PLANNED SONGS SO FAR (trying to find 12)
+- Creo - Crazy (Unlocks Green)
+- Netrum & Halvorsen - Phoenix (Unlocks Orange)
+- meganeko - Space Magic (Unlocks Blue)
+- Camellia - 2021年の魔法使いたち (Unlocks Purple)
+- Creo - Worlds (Unlocks Yellow)
+- Kaixo - Lycanthropy (Unlocks Red)
+- Rezonate - Canvas (Unlocks Pink)
+- ELEPS & Hookington - Watch Out - somanylynx remix (Unlocks Neon Blue)
+- Camellia - Burning Aquamarine (Unlocks Mint)
+- (Unlocks Black)
+- (Unlocks Lavender)
+- (Unlocks Cream)
