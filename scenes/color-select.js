@@ -1,6 +1,6 @@
-import button from '../scripts/button.js';
-import roundVector from '../scripts/round-vector.js';
-import splitSprite from '../scripts/split-sprite.js';
+import button from '/scripts/button.js';
+import roundVector from '/scripts/round-vector.js';
+import splitSprite from '/scripts/split-sprite.js';
 
 export default function colorSelect() {
   layers([
@@ -25,7 +25,12 @@ export default function colorSelect() {
       const thisColor = Object.keys(palettes)[i];
       const newButton = add([
         pos(center().x + j * 20 - 40, i * 23 + 2),
-        splitSprite('color-button', 3, 2, palettes[thisColor].slice(1, 4)),
+        splitSprite({
+          spriteName: 'color-button',
+          channels: 3,
+          frames: 2,
+          palette: palettes[thisColor].slice(1, 4)
+        }),
         area(),
         button(),
         'color-button'
@@ -51,7 +56,12 @@ export default function colorSelect() {
   for(let i = 0; i < 4; i++) {
     const newButton = add([
       pos(center().x + i * 20 - 40, 279),
-      splitSprite('color-button', 3, 2, palettes[['bronze', 'silver', 'gold', 'platinum'][i]].slice(1, 4)),
+      splitSprite({
+        spriteName: 'color-button',
+        channels: 3,
+        frames: 2,
+        palette: palettes[['bronze', 'silver', 'gold', 'platinum'][i]].slice(1, 4)
+      }),
       area(),
       button(),
       'color-button'

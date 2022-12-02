@@ -8,13 +8,7 @@ export default function button() {
       this.pos = roundVector(this.pos);
     },
     update() {
-      if(this.hasOwnProperty('_children')) {
-        for(let i = 0; i < this._children.length; i++) {
-          this._children[i].frame = this.defaultFrame + (+this.isHovering()) + i * 2;
-        }
-      } else {
-        this.frame = this.defaultFrame + (+this.isHovering());
-      }
+      this.frame = this.defaultFrame + (+this.isHovering());
     }
   }
 }

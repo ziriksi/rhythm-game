@@ -1,6 +1,6 @@
-import button from '../scripts/button.js';
-import transition from '../scripts/transition.js';
-import menuBackground from '../scripts/menu-background.js';
+import button from '/scripts/button.js';
+import transition from '/scripts/transition.js';
+import menuBackground from '/scripts/menu-background.js';
 
 export default function title() {
   layers([

@@ -36,7 +36,7 @@ loadSprite('small-button', 'editor-buttons/small-button.png', { sliceX: 2 });
 loadSprite('aux-buttons', 'aux-buttons.png', { sliceX: 2 , sliceY: 4 });
 loadSprite('small-shapes', 'small-shapes.png', { sliceX: 5, sliceY: 2 });
 loadSprite('lock', 'lock.png');
-loadSprite('cubes', 'cubes.png', { sliceX: 6, sliceY: 20 });
+loadSprite('cube', 'cube.png', { sliceX: 30, sliceY: 4 });
 
 
 // Scenes

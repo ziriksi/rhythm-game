@@ -1,5 +1,5 @@
-import button from '../scripts/button.js';
-import constrain from '../scripts/constrain.js';
+import button from '/scripts/button.js';
+import constrain from '/scripts/constrain.js';
 
 export default function mapEditor() {
   camPos(camPos().add(0, 16));

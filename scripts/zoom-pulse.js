@@ -1,13 +1,13 @@
 export default function zoomPulse(strength, time) {
-  camScale(camScale().add(vec2(strength)));
+  camScale(camScale().add(strength));
   let div = time * 50;
   
   let interval = setInterval(() => {
-    camScale(camScale().add(vec2(-strength / div)));
+    camScale(camScale().add(-strength / div));
     div += 0.4 / time;
-    debug.log(camScale().x)
+    
     if(camScale().x <= 1) {
-      camScale(vec2(1, 1));
+      camScale(1);
       clearInterval(interval);
     }
   }, 10);

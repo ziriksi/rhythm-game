@@ -1,7 +1,7 @@
+// This has been scrapped in favor of /scripts/split-sprite.js
+
 import constrain from './constrain.js';
 import hexToRgb from './hex-to-rgb.js';
-
-// UPDATE THIS MESS TO USE SPLITSPRITE
 
 export default class Cube {
   constructor(lane, palette) {
