@@ -12,7 +12,10 @@ import playClick from './scenes/play-click.js';
 import playCut from './scenes/play-cut.js';
 
 import loadJSON from './scripts/load-json.js';
+
+// Global
 window.palettes = await loadJSON('./assets/palettes.json');
+window.save = {};
 
 // Setup
 kaboom({

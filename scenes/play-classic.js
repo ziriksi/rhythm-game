@@ -12,6 +12,9 @@ export default async function playClassic() {
   ]);
   // Set frame to match cube perspective
   hitline.frame = constrain(Math.floor((hitline.pos.y + 16) / height() * 4), 0, 4);
+
+
+  
   
   
   onUpdate(() => {
@@ -36,6 +39,7 @@ export default async function playClassic() {
   on('frame-change', 'cube', cube => {
     // Update offsets
     cube._children.forEach(c => c.use(follow(cube,
+      // Yes, <quintant>-2 would be faster but this is more comprehendable imo
       vec2(0, [-2, -1, 0, 1, 2][constrain(Math.floor((cube.pos.y + 16) / height() * 4), 0, 4)])
     )));
   })

@@ -1,6 +1,13 @@
 // 'bg' must be defined as a layer before using
 
 export default function menuBackground() {
+  add([
+    pos(0, 0),
+    rect(width(), height()),
+    color(218, 112, 112),
+    layer('bg')
+  ]);
+  
   const visualizers = [];
   let loopDistance = -9;
   for(let i = 0; i < height() / 9 + 2; i++) {
@@ -39,7 +46,7 @@ class Visualizer {
           right: width() - i * 5 - 4
         }[side], y * 9 + 1),
         rect(4, 8),
-        color(218, 112, 112),
+        color(161, 113, 172),
         move(90, 10),
         layer('bg'),
         'visualizer-box'

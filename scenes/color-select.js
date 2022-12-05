@@ -1,6 +1,7 @@
 import button from '/scripts/button.js';
 import roundVector from '/scripts/round-vector.js';
 import splitSprite from '/scripts/split-sprite.js';
+import menuBackground from '/scripts/menu-background.js';
 
 export default function colorSelect() {
   layers([
@@ -8,15 +9,8 @@ export default function colorSelect() {
     'fg',
     'overlay'
   ], 'fg');
-  
-  // Background
-  add([
-    pos(0, 0),
-    rect(width(), height()),
-    color(93, 133, 203),
-    fixed(),
-    layer('bg')
-  ]);
+
+  menuBackground();
 
   // Buttons
   for(let i = 0; i < Object.keys(palettes).length; i++) {

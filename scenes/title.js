@@ -9,13 +9,6 @@ export default function title() {
     'overlay'
   ], 'fg');
   
-  // Background
-  add([
-    pos(0, 0),
-    rect(width(), height()),
-    color(93, 133, 203),
-    layer('bg')
-  ]);
   const playButton = add([
     pos(center().scale(1, 1 / 2)),
     sprite('wide-placeholder'),
