@@ -27,16 +27,20 @@ kaboom({
 loadRoot('./img/');
 loadSprite('placeholder', 'placeholder.png', { sliceX: 2 });
 loadSprite('wide-placeholder', 'wide-placeholder.png', { sliceX: 2 });
+
+loadSprite('aux-buttons', 'aux-buttons.png', { sliceX: 2 , sliceY: 4 });
+
 loadSprite('color-button', 'color-button.png', { sliceX: 2, sliceY: 3 });
 loadSprite('color-button-accents', 'color-button-accents.png', { sliceX: 4 });
+loadSprite('lock', 'lock.png');
+
 loadSprite('off-map-button', 'editor-buttons/off-map-button.png', { sliceX: 2 });
 loadSprite('on-map-button', 'editor-buttons/on-map-button.png', { sliceX: 2 });
 loadSprite('arrow', 'editor-buttons/arrow.png', { sliceX: 2 });
 loadSprite('small-button', 'editor-buttons/small-button.png', { sliceX: 2 });
-loadSprite('aux-buttons', 'aux-buttons.png', { sliceX: 2 , sliceY: 4 });
-loadSprite('small-shapes', 'small-shapes.png', { sliceX: 5, sliceY: 2 });
-loadSprite('lock', 'lock.png');
+
 loadSprite('cube', 'cube.png', { sliceX: 30, sliceY: 4 });
+loadSprite('cube-hitline', 'cube-hitline.png', { sliceY: 5 });
 
 
 // Scenes

@@ -29,13 +29,14 @@ export default function splitSprite({ spriteName, channels, frames, palette, fra
           this._children.forEach(c => {
             c.frame = c.baseFrame + this.frame;
           });
+          this.trigger('frame-change');
         }
         this.lastFrame = this.frame;
       });
       
       this.on('destroy', () => {
         this._children.forEach(c => destroy(c));
-      })
+      });
     }
   }
 }
