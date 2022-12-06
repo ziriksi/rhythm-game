@@ -5,7 +5,8 @@ export default function menuBackground() {
     pos(0, 0),
     rect(width(), height()),
     color(218, 112, 112),
-    layer('bg')
+    layer('bg'),
+    fixed()
   ]);
   
   const visualizers = [];
@@ -46,9 +47,10 @@ class Visualizer {
           right: width() - i * 5 - 4
         }[side], y * 9 + 1),
         rect(4, 8),
-        color(161, 113, 172),
+        color(160, 88, 105),
         move(90, 10),
         layer('bg'),
+        fixed(),
         'visualizer-box'
       ]));
     }

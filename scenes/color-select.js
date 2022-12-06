@@ -33,7 +33,7 @@ export default function colorSelect() {
       newButton.tier = j;
       newButton.gridX = j;
       newButton.gridY = i;
-      newButton.hoverText = `${['Dulled ', '', 'Shiny ', 'Radiant '][j]}${thisColor.replace(/(?<=\W|^)[a-z]/gi, l => l.toUpperCase()).replace(/-/g, ' ')}\nUnlock by passing <map> on ${['Easy', 'Medium', 'Hard', 'Albanian'][j]} difficulty or higher`;
+      newButton.hoverText = `${['Dulled ', '', 'Shiny ', 'Radiant '][j]}${thisColor.replace(/(?<=\W|^)[a-z]/gi, l => l.toUpperCase()).replace(/-/g, ' ')}\nUnlock by passing (map) on ${['Easy', 'Medium', 'Hard', 'Albanian'][j]} difficulty or higher`;
 
       newButton.lock = add([
         pos(center().x + j * 20 - 36, i * 23 + 4),
@@ -85,7 +85,7 @@ export default function colorSelect() {
   // Hover info
   const hoverBox = add([
     pos(0, 0),
-    rect(55, 30),
+    rect(55, 26),
     color(20, 20, 40),
     fixed(),
     opacity(0)
@@ -109,8 +109,8 @@ export default function colorSelect() {
   const hoverText = add([
     pos(2, 2),
     text('Sample Text', {
-      font: 'sink',
-      size: 4,
+      font: 'cp437',
+      size: 4.5,
       width: 55
     }),
     opacity(0),

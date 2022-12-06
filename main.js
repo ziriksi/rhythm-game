@@ -25,6 +25,8 @@ kaboom({
   debug: true
 });
 
+loadFont('cp437', 'assets/cp437.png', 6, 9, { chars: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.:,;(*!?}^)#${%^&-+'})
+
 
 // Load sprites
 loadRoot('./img/');
@@ -32,15 +34,18 @@ loadSprite('placeholder', 'placeholder.png', { sliceX: 2 });
 loadSprite('wide-placeholder', 'wide-placeholder.png', { sliceX: 2 });
 
 loadSprite('aux-buttons', 'aux-buttons.png', { sliceX: 2 , sliceY: 4 });
+loadSprite('small-button', 'small-button.png', { sliceX: 4 });
 
 loadSprite('color-button', 'color-button.png', { sliceX: 2, sliceY: 3 });
 loadSprite('color-button-accents', 'color-button-accents.png', { sliceX: 4 });
 loadSprite('lock', 'lock.png');
 
+loadSprite('keyboard-settings', 'keyboard-settings.png', { sliceY: 6 });
+
 loadSprite('off-map-button', 'editor-buttons/off-map-button.png', { sliceX: 2 });
 loadSprite('on-map-button', 'editor-buttons/on-map-button.png', { sliceX: 2 });
 loadSprite('arrow', 'editor-buttons/arrow.png', { sliceX: 2 });
-loadSprite('small-button', 'editor-buttons/small-button.png', { sliceX: 2 });
+loadSprite('small-white-button', 'editor-buttons/small-button.png', { sliceX: 2 });
 
 loadSprite('cube', 'cube.png', { sliceX: 30, sliceY: 4 });
 loadSprite('cube-hitline', 'cube-hitline.png', { sliceY: 5 });

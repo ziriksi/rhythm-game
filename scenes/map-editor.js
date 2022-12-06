@@ -8,6 +8,7 @@ export default function mapEditor() {
   const floor = center().y + 16;
   let map = [];
   let laneCount = 4;
+  debug.log(width())
 
   
   // Background
@@ -22,8 +23,8 @@ export default function mapEditor() {
   const laneDisplay = add([
     pos(width() + 20, 20),
     text('Lanes\n  4', {
-      font: 'sink',
-      size: 8
+      font: 'cp437',
+      size: 9
     }),
     'followY'
   ]);
@@ -71,14 +72,14 @@ export default function mapEditor() {
   const bpmDisplay = add([
     pos(width() + 20, 40),
     text('BPM: 60', {
-      font:'sink',
-      size: 8
+      font:'cp437',
+      size: 9
     }),
     'followY'
   ]);
   const bpmButton = add([
     pos(width() + 74, 40),
-    sprite('small-button'),
+    sprite('small-white-button'),
     area(),
     'followY',
     button()
@@ -92,14 +93,14 @@ export default function mapEditor() {
   const speedDisplay = add([
     pos(width() + 20, 50),
     text('Speed: 50 px/s', {
-      font:'sink',
-      size: 8
+      font:'cp437',
+      size: 9
     }),
     'followY'
   ]);
   const speedButton = add([
     pos(width() + 110, 50),
-    sprite('small-button'),
+    sprite('small-white-button'),
     area(),
     'followY',
     button()
@@ -309,7 +310,7 @@ export default function mapEditor() {
     const start = Math.floor((height() / 2 - camPos().y) / 16)
     for(let y = start; y < start + 10; y++) {
       if((y + 2) % 4 == 0) {
-        drawText({ text: (y - 2) / 4 + 1, size: 10, font: 'sink', width: 32, pos: vec2(2, height() - 16 * (y + 1) + 3), color: WHITE });
+        drawText({ text: (y - 2) / 4 + 1, size: 9, font: 'cp437', width: 32, pos: vec2(2, height() - 16 * (y + 1) + 3), color: WHITE });
       } else {
         drawRect({ width: 30, height: 2, pos: vec2(1, height() - 16 * (y + 1) + 7), color: WHITE, opacity: 0.65 });
       }
