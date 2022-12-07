@@ -19,7 +19,7 @@ export default function settings() {
   keyboard.press = false;
 
   const changeKeys = add([
-    pos(center().x, 32),
+    pos(center().x - 40, 32),
     area(),
     sprite('small-button'),
     origin('center'),
@@ -30,6 +30,15 @@ export default function settings() {
     keyboard.setting %= 3;
     keyboard.frame = keyboard.setting * 2 + keyboard.press;
   });
+
+  add([
+    pos(center().x, 32),
+    text('Change keys', {
+      text: 'Change keys',
+      font: 'cp437'
+    }),
+    origin('center')
+  ])
 
   let frame = 0;
 

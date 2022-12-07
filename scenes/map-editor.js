@@ -232,11 +232,11 @@ export default function mapEditor() {
   });
   onUpdate('tile', t => {
     // Wrap around
-    if(t.pos.y < camPos().y - height() / 2) {
+    while(t.pos.y < camPos().y - height() / 2) {
       t.pos.y += tilesHeight;
       t.updateY();
     }
-    if(t.pos.y > camPos().y + height() / 2 + 16) {
+    while(t.pos.y > camPos().y + height() / 2 + 16) {
       t.pos.y -= tilesHeight;
       t.updateY();
     }
