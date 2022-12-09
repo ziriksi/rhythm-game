@@ -4,6 +4,7 @@ import splitSprite from '/scripts/split-sprite.js'
 
 export default async function playClassic() {
   let frame = 0;
+  const keys = 'asdkl;';
 
   const hitline = add([
     pos(width() / 2 - 48, height() - 24),
@@ -14,15 +15,26 @@ export default async function playClassic() {
   ]);
   // Set frame to match cube perspective
   hitline.frame = constrain(Math.floor((hitline.pos.y + 16) / height() * 4), 0, 4);
-
-  onCollide('cube', 'hitline', cube => {
-    //hitCube(cube);
-  })
   
   onUpdate('debris', debris => {
     debris.moveBy(debris.vel);
     debris.vel = debris.vel.add(0, 0.1);
   });
+
+
+  for(const lane in keys) {
+    onKeyPress(keys[lane], () => {
+      let hit = false;
+      every('lane' + lane, cube => {
+        if(hit) return; // Only hit cube cube per key press
+        if(cube.isColliding(hitline)) {
+          hitCube(cube);
+          hit = true;
+        };
+      });
+      if(!hit) debug.log('miss');
+    });
+  }
   
   onUpdate(() => {
     frame++;
@@ -41,7 +53,7 @@ export default async function playClassic() {
     cube.frame = cube.baseFrame + constrain(Math.floor((cube.pos.y + 16) / height() * 4), 0, 4);
     
     if(cube.pos.y >= height() + 16) cube.destroy();
-    if(cube.pos.y >= hitline.pos.y - cube.perspective) hitCube(cube)
+    //if(cube.pos.y >= hitline.pos.y - cube.perspective) hitCube(cube)
   });
 
   on('frame-change', 'cube', cube => {
@@ -95,7 +107,7 @@ function hitCube(cube) {
           spriteName: 'debris',
           channels: 3,
           frames: 3,
-          palette: palettes['platinum'].slice(1),
+          palette: [palettes['platinum'][0], palettes['platinum'][2], palettes['platinum'][4]],
           dynamic: true
         }),
         cleanup(),
