@@ -16,7 +16,7 @@ export default async function playClassic() {
   hitline.frame = constrain(Math.floor((hitline.pos.y + 16) / height() * 4), 0, 4);
 
   onCollide('cube', 'hitline', cube => {
-    hitCube(cube);
+    //hitCube(cube);
   })
   
   onUpdate('debris', debris => {
@@ -41,14 +41,17 @@ export default async function playClassic() {
     cube.frame = cube.baseFrame + constrain(Math.floor((cube.pos.y + 16) / height() * 4), 0, 4);
     
     if(cube.pos.y >= height() + 16) cube.destroy();
+    if(cube.pos.y >= hitline.pos.y - cube.perspective) hitCube(cube)
   });
 
   on('frame-change', 'cube', cube => {
     // Update offsets
+    cube.perspective = [-2, -1, 0, 1, 2][constrain(Math.floor((cube.pos.y + 16) / height() * 4), 0, 4)];
     cube._children.forEach(c => c.use(follow(cube,
       // Yes, <quintant>-2 would be faster but this is more comprehendable imo
-      vec2(0, [-2, -1, 0, 1, 2][constrain(Math.floor((cube.pos.y + 16) / height() * 4), 0, 4)])
+      vec2(0, cube.perspective)
     )));
+    
   })
 }
 
@@ -69,19 +72,22 @@ function addCube(lane, color) {
   ]);
   cube.frame = lane * 5;
   cube.baseFrame = lane * 5;
-  cube._children.forEach(c => c.use(follow(cube,
+  cube.each(c => c.use(follow(cube,
     vec2(0, -2)
   )));
 }
 
 function hitCube(cube) {
+  if(cube.isHit) return;
+  cube.isHit = true;
+  
   cube.use(move(0, 0));
   
-  cube._children.forEach(c => c.use(color(255, 255, 255))); // Whiten
+  cube.each(c => c.use(color(255, 255, 255))); // Whiten
 
   wait(0.05, () => {
     // Create debris
-    for(let i = 0; i < 4; i++) {
+    for(let i = 0; i < 5; i++) {
       const debris = add([
         pos(cube.pos.add(6, 6)),
         area(),
@@ -97,6 +103,7 @@ function hitCube(cube) {
       ]);
       debris.frame = randi(0, 3);
       debris.vel = Vec2.fromAngle(randi(0, 360));
+      debris.each(c => c.use(z(2)));
     }
     
     cube.destroy();
