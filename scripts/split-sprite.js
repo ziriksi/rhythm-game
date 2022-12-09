@@ -33,10 +33,14 @@ export default function splitSprite({ spriteName, channels, frames, palette, fra
         }
         this.lastFrame = this.frame;
       });
-      
-      this.on('destroy', () => {
+
+      this.warningEvent = this.on('destroy', () => debug.log("Use this.destroy() instead"));
+
+      this.destroy = () => {
+        this.warningEvent(); // Cancel event
         this._children.forEach(c => destroy(c));
-      });
+        destroy(this);
+      };
     }
   }
 }

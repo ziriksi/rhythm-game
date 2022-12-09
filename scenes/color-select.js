@@ -14,7 +14,7 @@ export default function colorSelect() {
 
   // Buttons
   for(let i = 0; i < Object.keys(palettes).length; i++) {
-    if(Object.keys(palettes)[i] == 'bronze') break;
+    if(Object.keys(palettes)[i] == 'bronze') break;``
     for(let j = 0; j < 4; j++) {
       const thisColor = Object.keys(palettes)[i];
       const newButton = add([
@@ -85,14 +85,14 @@ export default function colorSelect() {
   // Hover info
   const hoverBox = add([
     pos(0, 0),
-    rect(55, 26),
+    rect(64, 26),
     color(20, 20, 40),
     fixed(),
     opacity(0)
   ]);
   hoverBox.onUpdate(function() {
     this.pos = mousePos();
-    if(this.pos.x > width() - 55) this.pos.x = width() - 55;
+    if(this.pos.x > width() - 64) this.pos.x = width() - 64;
     if(this.pos.y > height() - 30) this.pos.y = height() - 30;
 
     this.use(opacity(0));
@@ -111,7 +111,7 @@ export default function colorSelect() {
     text('Sample Text', {
       font: 'cp437',
       size: 4.5,
-      width: 55
+      width: 60
     }),
     opacity(0),
     fixed(),

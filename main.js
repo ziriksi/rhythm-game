@@ -49,6 +49,7 @@ loadSprite('small-white-button', 'editor-buttons/small-button.png', { sliceX: 2 
 
 loadSprite('cube', 'cube.png', { sliceX: 30, sliceY: 4 });
 loadSprite('cube-hitline', 'cube-hitline.png', { sliceY: 5 });
+loadSprite('debris', 'debris.png', { sliceX: 3, sliceY: 3 });
 
 
 // Scenes
@@ -63,6 +64,6 @@ scene('play-classic', playClassic);
 scene('play-click', playClick);
 scene('play-cut', playCut);
 
-
+on('go', () => alert(1))
 // Start
 go('title');
