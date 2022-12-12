@@ -1,6 +1,6 @@
 import button from '/scripts/button.js';
 import transition from '/scripts/transition.js';
-import menuBackground from '/scripts/menu-background.js';
+import background from '/scripts/background.js';
 
 export default function title() {
   layers([
@@ -8,6 +8,8 @@ export default function title() {
     'fg',
     'overlay'
   ], 'fg');
+
+  load(background('/backgrounds/menu.js'));
   
   const playButton = add([
     pos(center().scale(1, 1 / 2)),
@@ -30,11 +32,9 @@ export default function title() {
       area(),
       button()
     ]).onClick(() => {
-      transition(['color-select', 'settings', 'map-editor', 'browser'][i]);
+      transition(['color-select', 'settings', 'map-editor', 'browser'][i], '/backgrounds/menu.js');
     });
   }
-
-  menuBackground();
 
   onUpdate(() => {
     

@@ -4,7 +4,7 @@ import splitSprite from '/scripts/split-sprite.js'
 
 export default async function playClassic() {
   let frame = 0;
-  const keys = 'asdkl;';
+  const keys = 'sdfjkl';
 
   const hitline = add([
     pos(width() / 2 - 48, height() - 24),
@@ -28,7 +28,7 @@ export default async function playClassic() {
     onKeyPress(keys[lane], () => {
       let hit = false;
       every('lane' + lane, cube => {
-        if(hit) return; // Only hit cube cube per key press
+        if(hit) return; // Only hit one cube per key press
         if(cube.isColliding(hitline)) {
           hitCube(cube, getCubeDistance(cube));
           hit = true;

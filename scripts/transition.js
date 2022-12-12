@@ -1,3 +1,5 @@
+import background from '/scripts/background.js';
+
 export default function transition(scene) {
   let exit = false;
   every('overlay', () => exit = true);
