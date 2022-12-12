@@ -15,6 +15,8 @@ export default async function playClassic() {
   ]);
   // Set frame to match cube perspective
   hitline.frame = constrain(Math.floor((hitline.pos.y + 16) / height() * 4), 0, 4);
+
+  const getCubeDistance = cube => Math.abs(cube.pos.y - (hitline.pos.y - cube.perspective));
   
   onUpdate('debris', debris => {
     debris.moveBy(debris.vel);
@@ -28,7 +30,7 @@ export default async function playClassic() {
       every('lane' + lane, cube => {
         if(hit) return; // Only hit cube cube per key press
         if(cube.isColliding(hitline)) {
-          hitCube(cube);
+          hitCube(cube, getCubeDistance(cube));
           hit = true;
         };
       });
@@ -39,7 +41,7 @@ export default async function playClassic() {
   onUpdate(() => {
     frame++;
     if(frame % 20 == 0) {
-      for(let i = 0; i < 6; i++) {
+      for(let i = 1; i < 5; i++) {
         if(chance(0.6)) continue;
         addCube(i, 'platinum');
       }
@@ -53,7 +55,8 @@ export default async function playClassic() {
     cube.frame = cube.baseFrame + constrain(Math.floor((cube.pos.y + 16) / height() * 4), 0, 4);
     
     if(cube.pos.y >= height() + 16) cube.destroy();
-    //if(cube.pos.y >= hitline.pos.y - cube.perspective) hitCube(cube)
+    //if(cube.pos.y >= hitline.pos.y - cube.perspective) hitCube(cube, getCubeDistance(cube))
+    //if(cube.isColliding(hitline)) hitCube(cube, getCubeDistance(cube))
   });
 
   on('frame-change', 'cube', cube => {
@@ -89,12 +92,11 @@ function addCube(lane, color) {
   )));
 }
 
-function hitCube(cube) {
+function hitCube(cube, distance) {
   if(cube.isHit) return;
   cube.isHit = true;
   
   cube.use(move(0, 0));
-  
   cube.each(c => c.use(color(255, 255, 255))); // Whiten
 
   wait(0.05, () => {
@@ -117,7 +119,9 @@ function hitCube(cube) {
       debris.vel = Vec2.fromAngle(randi(0, 360));
       debris.each(c => c.use(z(2)));
     }
-    
+
+    const score = Math.round(100 - distance * 4); // Min: 36 Max: 100
+    debug.log(score);
     cube.destroy();
   });
 }
