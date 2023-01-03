@@ -21,8 +21,6 @@ export default function colorSelect() {
         pos(center().x + j * 20 - 40, i * 23 + 2),
         splitSprite({
           spriteName: 'color-button',
-          channels: 3,
-          frames: 2,
           palette: palettes[thisColor].slice(1, 4)
         }),
         area(),
@@ -52,8 +50,6 @@ export default function colorSelect() {
       pos(center().x + i * 20 - 40, 279),
       splitSprite({
         spriteName: 'color-button',
-        channels: 3,
-        frames: 2,
         palette: palettes[['bronze', 'silver', 'gold', 'platinum'][i]].slice(1, 4)
       }),
       area(),

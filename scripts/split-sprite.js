@@ -1,7 +1,7 @@
 import hexToRgb from './hex-to-rgb.js';
 
 // Creates a sprite component from an image split by color channels
-export default function splitSprite({ spriteName, channels, frames, palette, frame, dynamic }) {
+export default function splitSprite({ spriteName, palette, frame, dynamic }) {
   return {
     id: 'split-sprite',
     
@@ -12,10 +12,10 @@ export default function splitSprite({ spriteName, channels, frames, palette, fra
       this.frame = frame || 0;
       
       this._children = [];
-      for(let i = 0; i < channels; i++) {
+      for(let i = 0; i < window.splits[spriteName].y; i++) {
         const child = add([
           pos(this.pos),
-          sprite(spriteName, { frame: frames * i }),
+          sprite(spriteName, { frame: window.splits[spriteName].x * i }),
           hexToRgb(palette[i]),
           dynamic ? follow(this) : null
         ]);
@@ -35,14 +35,14 @@ export default function splitSprite({ spriteName, channels, frames, palette, fra
       });
 
       this.each = fn => {
-        this._children.forEach(c => fn(c));
+        this._children.forEach(fn);
       };
 
-      this.warningEvent = this.on('destroy', () => debug.log("Use this.destroy() instead"));
+      this.warningEvent = this.on('destroy', () => debug.log('Use this.destroy() instead'));
 
       this.destroy = () => {
         this.warningEvent(); // Cancel event
-        this._children.forEach(c => destroy(c));
+        this.each(c => destroy(c));
         destroy(this);
       };
     }

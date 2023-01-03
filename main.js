@@ -16,6 +16,7 @@ import loadJSON from './scripts/load-json.js';
 // Global
 window.palettes = await loadJSON('./assets/palettes.json');
 window.save = {};
+window.splits = {};
 
 // Setup
 kaboom({
@@ -26,6 +27,17 @@ kaboom({
 });
 
 loadFont('cp437', 'assets/cp437.png', 6, 9, { chars: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.:,;(*!?}^)#${%^&-+'})
+
+const _loadSprite = loadSprite;
+
+loadSprite = (id, src, options) => {
+  options = options ?? {};
+  _loadSprite(id, src, options);
+  window.splits[id] = {
+    x: options.sliceX || 1,
+    y: options.sliceY || 1
+  }
+};
 
 
 // Load sprites
@@ -64,6 +76,6 @@ scene('play-classic', playClassic);
 scene('play-click', playClick);
 scene('play-cut', playCut);
 
-on('go', () => alert(1))
+
 // Start
 go('title');

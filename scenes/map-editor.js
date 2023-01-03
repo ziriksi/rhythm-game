@@ -8,8 +8,6 @@ export default function mapEditor() {
   const floor = center().y + 16;
   let map = [];
   let laneCount = 4;
-  debug.log(width())
-
   
   // Background
   add([
@@ -29,14 +27,15 @@ export default function mapEditor() {
     'followY'
   ]);
   
-  const leftButton = add([
+  const lanesDown = add([
     pos(vec2(width() + 21, 28)),
     sprite('arrow'),
     area(),
     'followY',
     button()
   ]);
-  leftButton.onClick(() => {
+  
+  lanesDown.onClick(() => {
     laneCount = Math.max(laneCount - 2, 2);
     laneDisplay.text = `Lanes\n  ${laneCount}`;
     
@@ -48,14 +47,16 @@ export default function mapEditor() {
       }
     });
   });
-  const rightButton = add([
+  
+  const lanesUp = add([
     pos(vec2(width() + 41, 28)),
     sprite('arrow', { flipX: true }),
     area(),
     'followY',
     button()
   ]);
-  rightButton.onClick(() => {
+  
+  lanesUp.onClick(() => {
     laneCount = Math.min(laneCount + 2, 6);
     laneDisplay.text = `Lanes\n  ${laneCount}`;
     
@@ -67,6 +68,7 @@ export default function mapEditor() {
       }
     });
   });
+  
 
   // BPM settings
   const bpmDisplay = add([
@@ -162,6 +164,19 @@ export default function mapEditor() {
       sliderHead.offset = slider.offset + 50 - c * 50;
     }
   };
+
+  const playTest = add([
+    pos(152, 80),
+    sprite('arrow', { flipX: true }),
+    area(),
+    origin('center'),
+    button(),
+    'followY'
+  ]);
+
+  playTest.onClick(() => {
+    
+  });
   
 
 

@@ -75,8 +75,6 @@ function addCube(lane, color) {
     pos(Math.round(width() / 2) + lane * 16 - 48, -16),
     splitSprite({
       spriteName: 'cube',
-      channels: 4,
-      frames: 30,
       palette: palettes[color].slice(1),
       dynamic: true
     }),
@@ -107,8 +105,6 @@ function hitCube(cube, distance) {
         area(),
         splitSprite({
           spriteName: 'debris',
-          channels: 3,
-          frames: 3,
           palette: [palettes['platinum'][0], palettes['platinum'][2], palettes['platinum'][4]],
           dynamic: true
         }),
