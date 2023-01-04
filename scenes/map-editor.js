@@ -20,10 +20,7 @@ export default function mapEditor() {
   // Lane settings
   const laneDisplay = add([
     pos(width() + 20, 20),
-    text('Lanes\n  4', {
-      font: 'cp437',
-      size: 9
-    }),
+    text('Lanes\n  4', { size: 9 }),
     'followY'
   ]);
   
@@ -73,10 +70,7 @@ export default function mapEditor() {
   // BPM settings
   const bpmDisplay = add([
     pos(width() + 20, 40),
-    text('BPM: 60', {
-      font:'cp437',
-      size: 9
-    }),
+    text('BPM: 60', { size: 9 }),
     'followY'
   ]);
   const bpmButton = add([
@@ -94,10 +88,7 @@ export default function mapEditor() {
   // Speed settings
   const speedDisplay = add([
     pos(width() + 20, 50),
-    text('Speed: 50 px/s', {
-      font:'cp437',
-      size: 9
-    }),
+    text('Speed: 50 px/s', { size: 9 }),
     'followY'
   ]);
   
@@ -357,7 +348,7 @@ export default function mapEditor() {
     const start = Math.floor((height() / 2 - camPos().y) / 16)
     for(let y = start; y < start + 10; y++) {
       if((y + 2) % 4 == 0) {
-        drawText({ text: (y - 2) / 4 + 1, size: 9, font: 'cp437', width: 32, pos: vec2(2, height() - 16 * (y + 1) + 3), color: WHITE });
+        drawText({ text: (y - 2) / 4 + 1, size: 9, width: 32, pos: vec2(2, height() - 16 * (y + 1) + 3), color: WHITE });
       } else {
         drawRect({ width: 30, height: 2, pos: vec2(1, height() - 16 * (y + 1) + 7), color: WHITE, opacity: 0.65 });
       }

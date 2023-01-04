@@ -105,7 +105,6 @@ export default function colorSelect() {
   const hoverText = add([
     pos(2, 2),
     text('Sample Text', {
-      font: 'cp437',
       size: 4.5,
       width: 60
     }),

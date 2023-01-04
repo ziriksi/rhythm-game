@@ -33,10 +33,7 @@ export default function settings() {
 
   add([
     pos(center().x, 32),
-    text('Change keys', {
-      text: 'Change keys',
-      font: 'cp437'
-    }),
+    text('Change keys'),
     origin('center')
   ])
 

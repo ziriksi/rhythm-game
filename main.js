@@ -23,6 +23,7 @@ kaboom({
   fullscreen: true,
   crisp: true,
   scale: 10,
+  font: 'cp437',
   debug: true
 });
 
