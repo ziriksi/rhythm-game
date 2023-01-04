@@ -100,6 +100,7 @@ export default function mapEditor() {
     }),
     'followY'
   ]);
+  
   const speedButton = add([
     pos(width() + 110, 50),
     sprite('small-white-button'),
@@ -110,6 +111,50 @@ export default function mapEditor() {
   speedButton.onClick(() => {
     speed = Math.round(constrain(prompt('Speed:'), 1, 500)) || 50;
     speedDisplay.text = `Speed: ${speed} px/s`;
+  });
+
+  // Playhead
+  const playHead = add([
+    pos(0, height()),
+    rect(width(), 2),
+    z(1)
+  ]);
+
+  playHead.hidden = true
+
+  playHead.onUpdate(function() {
+    if(!this.hidden) camPos(camPos().x, Math.min(this.pos.y, floor));
+  });
+
+  // Playtest
+  const playTest = add([
+    pos(152, 80),
+    sprite('arrow', { flipX: true }),
+    area(),
+    origin('center'),
+    button(),
+    'followY'
+  ]);
+
+  playTest.onClick(() => {
+    playHead.moveTo(playHead.pos.x, Math.round(camPos().y + height() / 2) - 16);
+    playHead.use(move(270, bpm * 64 /  60));
+    playHead.hidden = false;
+    camPos(camPos().x, Math.min(playHead.pos.y, floor));
+  });
+
+  // Stop playtest
+  const stopPlayTest = add([
+    pos(152, 90),
+    sprite('small-white-button'),
+    area(),
+    origin('center'),
+    button(),
+    'followY'
+  ]);
+
+  stopPlayTest.onClick(() => {
+    playHead.hidden = true;
   });
   
 
@@ -164,19 +209,6 @@ export default function mapEditor() {
       sliderHead.offset = slider.offset + 50 - c * 50;
     }
   };
-
-  const playTest = add([
-    pos(152, 80),
-    sprite('arrow', { flipX: true }),
-    area(),
-    origin('center'),
-    button(),
-    'followY'
-  ]);
-
-  playTest.onClick(() => {
-    
-  });
   
 
 
