@@ -128,6 +128,7 @@ export default function mapEditor() {
   ]);
 
   playTest.onClick(() => {
+    if(camPos().x != width() / 2 || !playHead.hidden) return;
     playHead.moveTo(playHead.pos.x, Math.round(camPos().y + height() / 2) - 16);
     playHead.use(move(270, bpm * 64 /  60));
     playHead.hidden = false;
@@ -167,6 +168,7 @@ export default function mapEditor() {
   ]);
   sliderHead.dragging = false;
   sliderHead.onUpdate(function() {
+    if(!playHead.hidden) return;
     this.use((this.isHovering() || this.dragging) ? rect(8, 4) : rect(6, 2));
     if(this.dragging && isMouseMoved()) {
       this.moveBy(0, mouseDeltaPos().y);
@@ -297,6 +299,7 @@ export default function mapEditor() {
 
   // Change screens
   onKeyPress('d', () => {
+    if(!playHead.hidden) return;
     if(camPos().x == width() / 2) {
       const targetX = width() * 3 / 2;
       let i = 0;
@@ -314,6 +317,8 @@ export default function mapEditor() {
 
   // Terms are inaccurate here, I just copypasted from above and switched values around, 'targetX' is actually the initial position
   onKeyPress('a', () => {
+    if(!playHead.hidden) return;
+    
     if(camPos().x == width() * 3 / 2) {
       const targetX = width() * 3 / 2;
       let i = 180;

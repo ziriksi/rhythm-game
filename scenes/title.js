@@ -10,6 +10,11 @@ export default function title() {
   ], 'fg');
 
   load(background('/backgrounds/menu.js'));
+
+  add([
+    pos(1, 1),
+    text('indev build')
+  ]);
   
   const playButton = add([
     pos(center().scale(1, 1 / 2)),
