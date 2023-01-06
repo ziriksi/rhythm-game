@@ -70,7 +70,7 @@ export default function mapEditor() {
   // BPM settings
   const bpmDisplay = add([
     pos(width() + 20, 40),
-    text('BPM: 60', { size: 9 }),
+    text('BPM: 60'),
     'followY'
   ]);
   const bpmButton = add([
@@ -88,7 +88,7 @@ export default function mapEditor() {
   // Speed settings
   const speedDisplay = add([
     pos(width() + 20, 50),
-    text('Speed: 50 px/s', { size: 9 }),
+    text('Speed: 50 px/s'),
     'followY'
   ]);
   
@@ -102,6 +102,43 @@ export default function mapEditor() {
   speedButton.onClick(() => {
     speed = Math.round(constrain(prompt('Speed:'), 1, 500)) || 50;
     speedDisplay.text = `Speed: ${speed} px/s`;
+  });
+
+  // Save
+  const saveDisplay = add([
+    pos(width() + 20, 70),
+    text('Save'),
+    'followY'
+  ]);
+  
+  const saveButton = add([
+    pos(width() + 47, 70),
+    sprite('small-white-button'),
+    area(),
+    'followY',
+    button()
+  ]);
+  saveButton.onClick(() => {
+    
+  });
+
+  // Export
+  const exportDisplay = add([
+    pos(width() + 20, 80),
+    text('Export'),
+    'followY'
+  ]);
+  
+  const exportButton = add([
+    pos(width() + 60, 80),
+    sprite('small-white-button'),
+    area(),
+    'followY',
+    button()
+  ]);
+  exportButton.onClick(() => {
+    const mapData = map.map(row => String.fromCharCode(parseInt(1 + row.slice(0, 7).join(''), 2)) + (row[6] ? row[7] : '')).join('');
+    alert(mapData)
   });
 
   // Playhead
@@ -242,7 +279,7 @@ export default function mapEditor() {
     t.updateY = function() {
       this.mapY = (lowestY - this.pos.y) / 16;
       this.active = !!map?.[this.mapY]?.[this.mapX];
-      this.use(sprite((this.active ? 'on' : 'off') + '-map-button'));
+      this.use(sprite((this.active ? (this.mapX == 6 ? 'trigger' : 'on') : 'off') + '-map-button'));
     };
     t.updateY();
     
@@ -254,21 +291,46 @@ export default function mapEditor() {
       }
     });
   });
-  onClick('tile', t => {
-    t.active = !t.active; // Swap
-    t.use(sprite((t.active ? 'on' : 'off') + '-map-button'));
 
+
+  
+  onClick('tile', t => {
     // Fill missing rows
     while(map.length < t.mapY + 1) {
-      map.push([0, 0, 0, 0, 0, 0, 0, 0]);
+      map.push([0, 0, 0, 0, 0, 0, 0, []]);
+    }
+
+    if(t.mapX != 6) {
+      // Regular
+      t.active = !t.active; // Swap
+    } else {
+      // Trigger
+      let triggerString = '';
+      for(let i in map[t.mapY][7]) {
+        triggerString += `${+i + 1}. ${map[t.mapY][7][i]}\n`;
+      }
+      const answer = (prompt(`Triggers on this line:\n${triggerString}\nEnter action: 'add' 'delete <id>' or 'cancel'`) || '').match(/\S+/gi);
+      
+      if(answer === null) return;
+      if(answer[0] == 'add') {
+        map[t.mapY][7].push('a')
+      }
+      if(answer[0] == 'delete') {
+        if(answer[1] === undefined) answer[1] = prompt('Which?\n' + triggerString);
+        answer[1] = +answer[1];
+        if(map[t.mapY][7][answer[1] - 1] === undefined) return;
+        map[t.mapY][7].splice(answer[1] - 1, 1)
+      }
+      
+      t.active = !!map[t.mapY][7].length;
+      
     }
 
     map[t.mapY][t.mapX] = +t.active;
+    t.use(sprite((t.active ? (t.mapX == 6 ? 'trigger' : 'on') : 'off') + '-map-button'));
     
     // Remove empty rows at the top
-    while(map?.[map.length - 1]?.every(x => x == 0)) {
-      map.pop();
-    }
+    while(map?.[map.length - 1]?.every(x => x == 0)) map.pop();
   });
   onUpdate('tile', t => {
     // Wrap around
@@ -350,10 +412,11 @@ export default function mapEditor() {
 
   
   onDraw(() => {
+    // Beat lines
     const start = Math.floor((height() / 2 - camPos().y) / 16)
     for(let y = start; y < start + 10; y++) {
       if((y + 2) % 4 == 0) {
-        drawText({ text: (y - 2) / 4 + 1, size: 9, width: 32, pos: vec2(2, height() - 16 * (y + 1) + 3), color: WHITE });
+        drawText({ text: (y - 2) / 4 + 1, width: 32, pos: vec2(2, height() - 16 * (y + 1) + 3), color: WHITE });
       } else {
         drawRect({ width: 30, height: 2, pos: vec2(1, height() - 16 * (y + 1) + 7), color: WHITE, opacity: 0.65 });
       }

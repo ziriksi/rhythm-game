@@ -57,6 +57,7 @@ loadSprite('keyboard-settings', 'keyboard-settings.png', { sliceY: 6 });
 
 loadSprite('off-map-button', 'editor-buttons/off-map-button.png', { sliceX: 2 });
 loadSprite('on-map-button', 'editor-buttons/on-map-button.png', { sliceX: 2 });
+loadSprite('trigger-map-button', 'editor-buttons/trigger-map-button.png', { sliceX: 2 });
 loadSprite('arrow', 'editor-buttons/arrow.png', { sliceX: 2 });
 loadSprite('small-white-button', 'editor-buttons/small-button.png', { sliceX: 2 });
 
