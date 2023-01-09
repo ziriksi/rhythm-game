@@ -7,7 +7,7 @@ export default async function playClassic() {
   let frame = 0;
   const keys = 'sdfjkl';
 
-  load(background('/backgrounds/default.js'));
+  load(background('/backgrounds/defrault.js'));
 
   const hitline = add([
     pos(width() / 2 - 48, height() - 24),

@@ -127,6 +127,8 @@ export default function mapEditor() {
     return {
       song: 'darude-sandstorm',
       lanes: laneCount,
+      bpm: bpm,
+      speed: speed,
       map: mapData
     };
   }
