@@ -156,6 +156,7 @@ export default function mapEditor() {
   const playHead = add([
     pos(0, height()),
     rect(width(), 2),
+    area(),
     z(1)
   ]);
 
@@ -163,6 +164,20 @@ export default function mapEditor() {
 
   playHead.onUpdate(function() {
     if(!this.hidden) camPos(camPos().x, Math.min(this.pos.y, floor));
+  });
+
+  playHead.onCollide('tile', tile => {
+    // Exit if tile is inactive or not in a valid lane, or playhead is hidden
+    if(!tile.active || !tile.color.eq(new Color(255, 255, 255)) || playHead.hidden) return;
+    tile.use(color(0, 255, 255));
+    let i = 0;
+    const int = setInterval(() => {
+      i += 15;
+      tile.use(color(i, 255, 255));
+      if(i >= 255) {
+        clearInterval(int);
+      }
+    }, 20);
   });
 
   // Playtest
@@ -343,15 +358,16 @@ export default function mapEditor() {
     // Remove empty rows at the top
     while(map?.[map.length - 1]?.every(x => x == 0)) map.pop();
   });
-  onUpdate('tile', t => {
+  
+  onUpdate('tile', tile => {
     // Wrap around
-    while(t.pos.y < camPos().y - height() / 2) {
-      t.pos.y += tilesHeight;
-      t.updateY();
+    while(tile.pos.y < camPos().y - height() / 2) {
+      tile.pos.y += tilesHeight;
+      tile.updateY();
     }
-    while(t.pos.y > camPos().y + height() / 2 + 16) {
-      t.pos.y -= tilesHeight;
-      t.updateY();
+    while(tile.pos.y > camPos().y + height() / 2 + 16) {
+      tile.pos.y -= tilesHeight;
+      tile.updateY();
     }
   });
 
