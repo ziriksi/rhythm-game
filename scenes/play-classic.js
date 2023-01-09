@@ -1,10 +1,13 @@
 import zoomPulse from '/scripts/zoom-pulse.js';
-import constrain from '/scripts/constrain.js'
-import splitSprite from '/scripts/split-sprite.js'
+import constrain from '/scripts/constrain.js';
+import splitSprite from '/scripts/split-sprite.js';
+import background from '/scripts/background.js';
 
 export default async function playClassic() {
   let frame = 0;
   const keys = 'sdfjkl';
+
+  load(background('/backgrounds/default.js'));
 
   const hitline = add([
     pos(width() / 2 - 48, height() - 24),

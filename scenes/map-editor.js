@@ -122,6 +122,15 @@ export default function mapEditor() {
     
   });
 
+  function compileMap() {
+    const mapData = map.map(row => String.fromCharCode(parseInt(1 + row.slice(0, 7).join(''), 2)) + (row[6] ? row[7] : '')).join('');
+    return {
+      song: 'darude-sandstorm',
+      lanes: laneCount,
+      map: mapData
+    };
+  }
+
   // Export
   const exportDisplay = add([
     pos(width() + 20, 80),
@@ -137,8 +146,8 @@ export default function mapEditor() {
     button()
   ]);
   exportButton.onClick(() => {
-    const mapData = map.map(row => String.fromCharCode(parseInt(1 + row.slice(0, 7).join(''), 2)) + (row[6] ? row[7] : '')).join('');
-    alert(mapData)
+    alert(compileMap());
+    console.log(compileMap());
   });
 
   // Playhead
@@ -423,3 +432,5 @@ export default function mapEditor() {
     }
   });
 };
+
+

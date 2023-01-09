@@ -1,6 +1,4 @@
-import background from '/scripts/background.js';
-
-export default function transition(scene) {
+export default function transition(scene, pause) {
   let exit = false;
   every('overlay', () => exit = true);
   if(exit) return;
@@ -12,6 +10,7 @@ export default function transition(scene) {
     opacity(0),
     stay(),
     layer('overlay'),
+    z(100),
     'overlay'
   ]);
   overlay.opacityDelta = 0.15;
@@ -22,6 +21,9 @@ export default function transition(scene) {
       overlay.opacity = 1;
       overlay.opacityDelta = -0.15;
       go(scene);
+      debug.paused = !!pause;
+      debug.stepFrame();
+      overlay.opacity = 1;
     }
     if(overlay.opacity < 0) {
       destroy(overlay);

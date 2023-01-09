@@ -1,4 +1,4 @@
-import background from '/scripts/background.js';
+import menuBackground from '/scripts/menu-background.js';
 import button from '/scripts/button.js'
 
 export default function settings() {
@@ -8,7 +8,7 @@ export default function settings() {
     'overlay'
   ], 'fg');
   
-  load(background('/backgrounds/menu.js'));
+  menuBackground();
 
   const keyboard = add([
     pos(center().x, 16),

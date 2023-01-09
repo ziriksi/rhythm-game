@@ -1,3 +1,6 @@
+// Keep line below
+const eventProxy=add(['event-proxy']);const event=(id,callback)=>eventProxy.trigger(id,'event-proxy',callback);
+
 class Visualizer {
   constructor(side, y) {
     for(let i = 0; i < 10; i++) {
@@ -78,4 +81,9 @@ onUpdate(() => {
       visualizers[i].beat();
     }
   }
+});
+
+
+event('alert', text => {
+  alert(text);
 });

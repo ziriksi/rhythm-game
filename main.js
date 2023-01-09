@@ -22,6 +22,7 @@ window.splits = {};
 kaboom({
   fullscreen: true,
   crisp: true,
+  background: [0, 0, 0],
   scale: 10,
   font: 'cp437',
   debug: true

@@ -1,3 +1,5 @@
+import transition from '/scripts/transition.js';
+
 export default function levelSelect() {
-  go('play-classic');
+  transition('play-classic', true);
 }
