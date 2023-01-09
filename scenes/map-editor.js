@@ -124,13 +124,13 @@ export default function mapEditor() {
 
   function compileMap() {
     const mapData = map.map(row => String.fromCharCode(parseInt(1 + row.slice(0, 7).join(''), 2)) + (row[6] ? row[7] : '')).join('');
-    return {
+    return JSON.stringify({
       song: 'darude-sandstorm',
       lanes: laneCount,
       bpm: bpm,
       speed: speed,
       map: mapData
-    };
+    });
   }
 
   // Export
@@ -168,7 +168,9 @@ export default function mapEditor() {
 
   playHead.onCollide('tile', tile => {
     // Exit if tile is inactive or not in a valid lane, or playhead is hidden
+    
     if(!tile.active || !tile.color.eq(new Color(255, 255, 255)) || playHead.hidden) return;
+    
     tile.use(color(0, 255, 255));
     let i = 0;
     const int = setInterval(() => {
