@@ -1,7 +1,8 @@
 // Keep line below
-const eventProxy=add(['event-proxy']);const event=(id,callback)=>eventProxy.trigger(id,'event-proxy',callback);
+const eventProxy = add(['event-proxy']);
+const event = (id, callback) => eventProxy.trigger(id, 'event-proxy', callback);
 
-class Visualizer {
+class Visualizer { 
   constructor(side, y) {
     for(let i = 0; i < 10; i++) {
       this.boxes.push(add([
@@ -30,7 +31,7 @@ class Visualizer {
   }
 
   beat() {
-    this.visible = Math.min(this.visible + rand(0, 12 - this.visible), 10);
+    this.visible = Math.min(this.visible + rand(0, 10 - this.visible), 10);
   }
 }
 
@@ -76,7 +77,7 @@ onUpdate(() => {
       visualizers[i].update();
     }
   }
-  if(frame % 30 == 0) {
+  if(isKeyPressed()) {
     for(let i = 0; i < visualizers.length; i++) {
       visualizers[i].beat();
     }

@@ -43,7 +43,7 @@ loadSprite = (id, src, options) => {
 
 
 // Load sprites
-loadRoot('./img/');
+loadRoot('/img/');
 loadSprite('placeholder', 'placeholder.png', { sliceX: 2 });
 loadSprite('wide-placeholder', 'wide-placeholder.png', { sliceX: 2 });
 
@@ -65,6 +65,11 @@ loadSprite('small-white-button', 'editor-buttons/small-button.png', { sliceX: 2 
 loadSprite('cube', 'cube.png', { sliceX: 30, sliceY: 4 });
 loadSprite('cube-hitline', 'cube-hitline.png', { sliceY: 5 });
 loadSprite('debris', 'debris.png', { sliceX: 3, sliceY: 3 });
+
+
+// Audio
+loadRoot('/audio/music/');
+loadSound('100bpm', '100bpm.mp3');
 
 
 // Scenes

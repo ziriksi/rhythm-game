@@ -7,6 +7,8 @@ export default function mapEditor() {
   let speed = 50;
   const floor = center().y + 16;
   let map = [];
+  let songName = '100bpm';
+  let song = play('100bpm')
   let laneCount = 4;
   
   // Background
@@ -197,6 +199,7 @@ export default function mapEditor() {
     playHead.moveTo(playHead.pos.x, Math.round(camPos().y + height() / 2) - 16);
     playHead.use(move(270, bpm * 64 /  60));
     playHead.hidden = false;
+    song.play();
     camPos(camPos().x, Math.min(playHead.pos.y, floor));
   });
 
@@ -341,7 +344,7 @@ export default function mapEditor() {
       
       if(answer === null) return;
       if(answer[0] == 'add') {
-        map[t.mapY][7].push('a')
+        map[t.mapY][7].push('a'); // PLACEHOLDER
       }
       if(answer[0] == 'delete') {
         if(answer[1] === undefined) answer[1] = prompt('Which?\n' + triggerString);
@@ -444,8 +447,8 @@ export default function mapEditor() {
     // Beat lines
     const start = Math.floor((height() / 2 - camPos().y) / 16)
     for(let y = start; y < start + 10; y++) {
-      if((y + 2) % 4 == 0) {
-        drawText({ text: (y - 2) / 4 + 1, width: 32, pos: vec2(2, height() - 16 * (y + 1) + 3), color: WHITE });
+      if((y + 1) % 4 == 0) {
+        drawText({ text: (y - 3) / 4 + 1, width: 32, pos: vec2(2, height() - 16 * (y + 1) + 3), color: WHITE });
       } else {
         drawRect({ width: 30, height: 2, pos: vec2(1, height() - 16 * (y + 1) + 7), color: WHITE, opacity: 0.65 });
       }
