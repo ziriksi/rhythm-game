@@ -56,19 +56,17 @@ export default async function playClassic() {
         gradeDisplay.text = grade;
         // Grade changed
         if(grade != pGrade) {
-          const effectText = pGrade + (!hasMissed && cubesHit == maxCubesHit ? '+' : '');
-          const scaleDelta = ('SABCD'.indexOf(grade) > 'SABCD'.indexOf(pGrade)) ? -0.03 : 0.03;
-          debug.log(effectText)
+          const scoreWentUp = 'SABCD'.indexOf(grade) < 'SABCD'.indexOf(pGrade);
           const gradeChangeEffect = add([
             pos(gradeDisplay.pos),
-            text(effectText, { size: 18 }),
+            text((scoreWentUp ? grade: pGrade) + (!hasMissed && cubesHit == maxCubesHit ? '+' : ''), { size: 18 }),
             origin('center'),
             opacity(1),
             scale(1),
             fixed()
           ]);
           gradeChangeEffect.onUpdate(() => {
-            gradeChangeEffect.scaleTo(gradeChangeEffect.scale.x + scaleDelta);
+            gradeChangeEffect.scaleTo(gradeChangeEffect.scale.x + (scoreWentUp ? 0.03 : -0.03));
             gradeChangeEffect.opacity -= 0.03;
             if(gradeChangeEffect.opacity <= 0) {
               destroy(gradeChangeEffect);
