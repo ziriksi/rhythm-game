@@ -28,7 +28,7 @@ kaboom({
   debug: true
 });
 
-loadFont('cp437', 'assets/cp437.png', 6, 9, { chars: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.:,;(*!?}^)#${%^&-+'})
+loadFont('cp437', 'assets/cp437.png', 6, 9, { chars: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.:,;(*!?}^)#${%^&-+/'})
 
 const _loadSprite = loadSprite;
 

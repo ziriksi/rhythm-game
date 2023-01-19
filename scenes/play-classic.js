@@ -18,6 +18,7 @@ export default async function playClassic() {
   let maxCubesHit = 0;
   let life = 10;
   let multi = 24;
+  let hasMissed = false;
 
   load(background('/backgrounds/defrault.js'));
 
@@ -36,13 +37,69 @@ export default async function playClassic() {
 
   const gradeDisplay = add([
     pos(22, Math.round(center().y) - 18),
-    text('A+', { size: 18 }),
+    text('S+', { size: 18 }),
     origin('center'),
     fixed()
   ]);
 
   gradeDisplay.onUpdate(() => {
-    
+    const pGrade = gradeDisplay.text[0];
+    const hadPlus = !!gradeDisplay.text[1];
+    for(const [grade, minRatio] of Object.entries({
+      'S': 0.9,
+      'A': 0.8,
+      'B': 0.65,
+      'C': 0.5,
+      'D': -1
+    })) {
+      if(maxScore == 0 ? true : (score / maxScore >= minRatio)) {
+        gradeDisplay.text = grade;
+        // Grade changed
+        if(grade != pGrade) {
+          const effectText = pGrade + (!hasMissed && cubesHit == maxCubesHit ? '+' : '');
+          const scaleDelta = ('SABCD'.indexOf(grade) > 'SABCD'.indexOf(pGrade)) ? -0.03 : 0.03;
+          debug.log(effectText)
+          const gradeChangeEffect = add([
+            pos(gradeDisplay.pos),
+            text(effectText, { size: 18 }),
+            origin('center'),
+            opacity(1),
+            scale(1),
+            fixed()
+          ]);
+          gradeChangeEffect.onUpdate(() => {
+            gradeChangeEffect.scaleTo(gradeChangeEffect.scale.x + scaleDelta);
+            gradeChangeEffect.opacity -= 0.03;
+            if(gradeChangeEffect.opacity <= 0) {
+              destroy(gradeChangeEffect);
+            }
+          });
+        }
+        
+        if(!hasMissed && cubesHit == maxCubesHit) {
+          gradeDisplay.text += '+';
+        } else if(hadPlus) {
+          // Full combo lost
+          const fallingPlus = add([
+            pos(gradeDisplay.pos.add(6, 0)),
+            text('+', { size: 18 }),
+            origin('center'),
+            move(90, 20),
+            rotate(0),
+            opacity(1),
+            fixed()
+          ]);
+          fallingPlus.onUpdate(() => {
+            fallingPlus.angle += 5;
+            fallingPlus.opacity -= 0.03;
+            if(fallingPlus.opacity <= 0) {
+              destroy(fallingPlus);
+            }
+          });
+        }
+        break;
+      }
+    }
   });
 
   const scoreDisplay = add([
@@ -59,13 +116,13 @@ export default async function playClassic() {
 
   const cubesHitDisplay = add([
     pos(22, Math.round(center().y) + 10),
-    text('80-100'),
+    text('0/0'),
     origin('center'),
     fixed()
   ]);
 
   cubesHitDisplay.onUpdate(() => {
-    cubesHitDisplay.text = `${cubesHit}-${maxCubesHit}`;
+    cubesHitDisplay.text = `${cubesHit}/${maxCubesHit}`;
   });
 
 
@@ -137,8 +194,9 @@ export default async function playClassic() {
         };
       });
       if(!hit) {
-        life = Math.max(life - 3, 0);
-        multi = Math.max(multi - 12, 0);
+        life = Math.max(life - 2, 0);
+        multi = Math.max(multi - 6, 0);
+        hasMissed = true;
       };
     });
   }
@@ -203,10 +261,9 @@ export default async function playClassic() {
       }
 
       life = Math.min(life + 0.5, 10);
-      multi = Math.min(multi + 1, 24);
+      multi = Math.min(multi + 0.5, 24);
   
       const s = Math.round(100 - distance * 4); // Min: 36 Max: 100
-      debug.log(s);
       score += s * multi;
       cubesHit++;
       cube.destroy();
@@ -216,7 +273,11 @@ export default async function playClassic() {
   onUpdate('cube', cube => {
     cube.frame = cube.baseFrame + constrain(Math.floor((cube.pos.y + 16) / height() * 4), 0, 4);
     
-    if(cube.pos.y >= height() + 16) cube.destroy();
+    if(cube.pos.y >= height() + 16) {
+      life = Math.max(life - 3, 0);
+      multi = Math.max(multi - 12, 0);
+      cube.destroy();
+    }
     //if(cube.pos.y >= hitline.pos.y - cube.perspective) hitCube(cube, getCubeDistance(cube))
     //if(cube.isColliding(hitline)) hitCube(cube, getCubeDistance(cube))
   });
@@ -230,8 +291,6 @@ export default async function playClassic() {
   on('destroy', 'cube', cube => {
     maxScore += 2400;
     maxCubesHit++;
-
-    debug.log(cube.hit)
   });
 }
 
