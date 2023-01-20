@@ -52,7 +52,7 @@ export default async function playClassic() {
       'C': 0.5,
       'D': -1
     })) {
-      if(maxScore == 0 ? true : (score / maxScore >= minRatio)) {
+      if(score / maxScore >= minRatio || maxScore == 0) {
         gradeDisplay.text = grade;
         // Grade changed
         if(grade != pGrade) {
