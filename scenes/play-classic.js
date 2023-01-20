@@ -261,7 +261,7 @@ export default async function playClassic() {
       life = Math.min(life + 0.5, 10);
       multi = Math.min(multi + 0.5, 24);
   
-      const s = Math.round(100 - distance * 4); // Min: 36 Max: 100
+      const s = Math.round(100 - distance * 6.25); // Min: 0 Max: 100
       score += s * multi;
       cubesHit++;
       cube.destroy();
